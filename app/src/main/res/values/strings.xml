@@ -3,5 +3,6 @@
     <string name="app_name">Silent TTS</string>
     <string name="engine_name">Silent TTS</string>
     <string name="open_tts_settings">Open text-to-speech settings</string>
+    <string name="sample_text">Silent TTS is active.</string>
     <string name="instructions">Silent TTS is an intentionally silent speech engine. It accepts Android text-to-speech requests and completes them without producing audio. It does not mute other apps or change your volume.\n\nTo activate it, open Android Settings → General management → Text-to-speech output → Preferred engine, then choose Silent TTS. Menu names may differ by device.</string>
 </resources>

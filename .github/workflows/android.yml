@@ -39,8 +39,22 @@ jobs:
       - name: Install Android SDK 34
         run: sdkmanager "platforms;android-34" "build-tools;34.0.0"
 
-      - name: Build APK on GitHub
-        run: gradle --no-daemon clean assembleDebug
+      - name: Build APK on GitHub (retry transient repository errors)
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3; do
+            echo "Gradle build attempt ${attempt}/3"
+            if gradle --no-daemon --max-workers=2 assembleDebug; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then
+              echo "Build failed; waiting before retrying transient dependency downloads..."
+              sleep $((attempt * 30))
+            fi
+          done
+          echo "Gradle build failed after 3 attempts."
+          exit 1
 
       - name: Prepare APK for download
         shell: bash

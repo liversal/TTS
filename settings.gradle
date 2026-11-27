@@ -1,6 +1,10 @@
 pluginManagement {
     repositories {
         google()
+        // Google-hosted mirror of Maven Central avoids transient Central rate limits.
+        maven {
+            url = uri("https://maven-central.storage-download.googleapis.com/maven2/")
+        }
         mavenCentral()
         gradlePluginPortal()
     }
@@ -9,6 +13,10 @@ dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
+        // Use the mirror before the canonical endpoint as the preferred source.
+        maven {
+            url = uri("https://maven-central.storage-download.googleapis.com/maven2/")
+        }
         mavenCentral()
     }
 }

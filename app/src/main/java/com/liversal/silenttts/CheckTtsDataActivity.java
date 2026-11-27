@@ -3,7 +3,7 @@ package com.liversal.silenttts;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
+import android.speech.tts.TextToSpeech;\nimport java.util.ArrayList;
 
 public final class CheckTtsDataActivity extends Activity {
     @Override
@@ -11,7 +11,7 @@ public final class CheckTtsDataActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         Intent result = new Intent();
-        result.putExtra(TextToSpeech.Engine.EXTRA_AVAILABLE_VOICES, new String[0]);
+        result.putExtra(TextToSpeech.Engine.EXTRA_AVAILABLE_VOICES, new ArrayList<String>());
         result.putExtra(TextToSpeech.Engine.EXTRA_UNAVAILABLE_VOICES, new String[0]);
         setResult(TextToSpeech.Engine.CHECK_VOICE_DATA_PASS, result);
         finish();

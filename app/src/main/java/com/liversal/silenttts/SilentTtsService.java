@@ -20,6 +20,12 @@ public final class SilentTtsService extends TextToSpeechService {
         if (language == null || language.trim().isEmpty()) {
             return TextToSpeech.LANG_NOT_SUPPORTED;
         }
+        if (variant != null && !variant.trim().isEmpty()) {
+            return TextToSpeech.LANG_COUNTRY_VAR_AVAILABLE;
+        }
+        if (country != null && !country.trim().isEmpty()) {
+            return TextToSpeech.LANG_COUNTRY_AVAILABLE;
+        }
         return TextToSpeech.LANG_AVAILABLE;
     }
 
@@ -30,7 +36,7 @@ public final class SilentTtsService extends TextToSpeechService {
 
     @Override
     protected String[] onGetLanguage() {
-        return new String[] { "en", "US", "" };
+        return new String[] { "eng", "USA", "" };
     }
 
     @Override

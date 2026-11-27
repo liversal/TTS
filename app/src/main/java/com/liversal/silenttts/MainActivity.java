@@ -18,6 +18,7 @@ public final class MainActivity extends Activity {
         int pad = (int) (20 * getResources().getDisplayMetrics().density);
         LinearLayout root = new LinearLayout(this);
         root.setOrientation(LinearLayout.VERTICAL);
+        root.setFitsSystemWindows(true);
         root.setPadding(pad, pad, pad, pad);
         root.setGravity(Gravity.CENTER_VERTICAL);
 

@@ -15,12 +15,7 @@ public final class CheckTtsDataActivity extends Activity {
         String action = incoming != null ? incoming.getAction() : null;
 
         if (TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA.equals(action)) {
-            Intent installed = new Intent(TextToSpeech.Engine.ACTION_TTS_DATA_INSTALLED);
-            installed.putExtra(
-                    TextToSpeech.Engine.EXTRA_TTS_DATA_INSTALLED,
-                    TextToSpeech.Engine.CHECK_VOICE_DATA_PASS
-            );
-            sendBroadcast(installed);
+            sendBroadcast(new Intent(TextToSpeech.Engine.ACTION_TTS_DATA_INSTALLED));
             setResult(RESULT_OK);
             finish();
             return;

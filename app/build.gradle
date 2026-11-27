@@ -3,39 +3,42 @@ plugins {
 }
 
 android {
-    namespace 'com.liversal.silenttts'
-    compileSdk 34
+    namespace = 'com.liversal.silenttts'
+    compileSdk = 36
 
     defaultConfig {
-        applicationId 'com.liversal.silenttts'
-        minSdk 26
-        targetSdk 34
-        versionCode 1
-        versionName '1.0.0'
+        applicationId = 'com.liversal.silenttts'
+        minSdk = 26
+        targetSdk = 36
+        versionCode = 1
+        versionName = '1.0.0'
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
-    signingConfigs {
-        debugConfig {
-            storeFile file("${rootDir}/debug.keystore")
-            storePassword 'android'
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
+    def localDebugKeystore = file("${rootDir}/debug.keystore")
+    if (localDebugKeystore.exists()) {
+        signingConfigs {
+            debugConfig {
+                storeFile = localDebugKeystore
+                storePassword = 'android'
+                keyAlias = 'androiddebugkey'
+                keyPassword = 'android'
+            }
         }
     }
 
     buildTypes {
         debug {
-            signingConfig signingConfigs.debugConfig
-            applicationIdSuffix '.debug'
-            versionNameSuffix '-debug'
+            if (localDebugKeystore.exists()) {
+                signingConfig = signingConfigs.debugConfig
+            }
         }
         release {
-            minifyEnabled false
+            minifyEnabled = false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
